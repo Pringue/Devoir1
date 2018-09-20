@@ -7,6 +7,8 @@ function Exo1()
             url:"PHP/getLesCategories.php",
             success:function(data)
             {
+                $("#lesDeals").empty();
+                $("#identifiant").empty();
                 $("#lesCategories").empty();
                 $("#lesCategories").append(data);
             },
@@ -37,4 +39,47 @@ function AfficherLesServices()
             }
         }
     );
+}
+
+function Exo2()
+{
+    $.ajax
+    (
+        {
+            type:'get',
+            url:'PHP/identifiant.php',
+            success:function(data)
+            {
+                $("#lesCategories").empty();
+                $("#lesServices").empty();
+                $("#identifiant").empty();
+                $("#identifiant").append(data);
+            },
+            error:function()
+            {
+                alert("Erreur dans l'affichage de l'identifiant");
+            }
+        }
+    );
+}
+
+function AfficherLesDeals()
+{
+    $.ajax
+    (
+        {
+            type:"get",
+            url:'PHP/getLesDeals.php',
+            data:"idCreateur="+$("#idCreateur").val(),
+            success:function(data)
+            {
+                $("#lesDeals").empty();
+                $("#lesDeals").append(data);
+            },
+            error:function()
+            {
+                alert("Erreur dans la récupération des deals")
+            }
+        }
+    )
 }
